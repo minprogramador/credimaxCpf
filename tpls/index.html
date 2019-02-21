@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+	    <meta charset="UTF-8">
+	    <meta http-equiv="X-UA-ComPA',tible" content="IE=edge,chrome=1">
+	    <title>Credimax CPF</title>
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" href="css/bootstrap.min.css">
+	    <link rel="stylesheet" href="css/main.css">
+	    <style>
+	    	#boxmsg {
+	    		margin-top: 2%;
+	    	}
+	    	#formIden{
+	    		margin-top: 2%;
+	    	}
+	    	p.col-sm-2 > strong:nth-child(1){
+	    		margin-right: -10% !important;
+	    	}
+	    	.form-horizontal .control-label {
+	    		text-align: left !important;
+	    	}
+	    	div.control-label{
+	    		padding-left: 2.5%;
+	    	}
+		</style>
+	</head>
+	<body id="index">
+		<nav class="navbar navbar-inverse">
+		    <div class="container">
+		        <div class="navbar-header">
+		            <div class="navbar-brand text-center">
+		                <span class="glyphicon glyphicon-user"> </span> Credimax CPF
+		            </div>
+		        </div>
+		    </div>
+		</nav>
+
+		<div class="container">
+			<form name="busc" method="post" action="" class="form-horizontal" id="formIden">
+	            <div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-sm-col-md-3 col-lg-6 col-lg-offset-3">
+                <div class="form-group" id="tipo">
+                    <p class="col-sm-2 control-label pull-left"><strong>Score:</strong></p>
+                    <div class="col-sm-10 control-label" style="margin-left: -4%;">
+                        <div class="pull-left">
+                            <input class="form-group radio pull-left" type="radio" name="comScore" id="comScore" value="S" checked>
+                            <label for="comScore">Mostrar</label>
+                        </div>
+                        <div class="pull-left">
+                            <input class="form-group radio pull-left" type="radio" name="comScore" id="semScore" value="N">
+                            <label for="semScore">Não mostrar</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+		                <label for="cpf" class="col-sm-1 control-label">CPF:</label>
+		                <div class="col-sm-11">
+		                    <input type="text" class="form-control" id="cpf" name="cpf" placeholder="Digite um CPF">
+		                </div>
+		            </div>
+		            <div class="col-md-12">
+		                <div class="row">
+		                    <div class="form-group">
+		                        <p class="feedback-result text-center none"></p>
+		                    </div>
+		                </div>
+		            </div>
+
+		            <div class="col-md-12">
+		                <div class="row">
+		                    <div class="form-group">
+		                        <input type="submit" id="consultaIden" class="btn btn-primary center-block" name="Consultar" value="Consultar" />
+		                    </div>
+		                </div>
+		            </div>
+		        </div>				
+	        </form>
+			
+		</div>
+		<div class="container">
+			<div class="col-xs-10 col-xs-offset-1 col-sm-8 col-sm-offset-2 col-sm-col-md-3 col-lg-6 col-lg-offset-3" id="boxmsg">
+		       	<div class="row">
+					<div class="alert alert-info alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<strong>Aguarde!</strong> Processando.. 
+					</div>
+					<div class="alert alert-warning alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<strong>Atençāo!</strong> Sistema temporariamente indisponível.
+
+					</div>
+					<div class="alert alert-danger alert-dismissible" role="alert">
+						<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						<strong>Ops!</strong> Nada encontrado para o CPF informado.
+					</div>
+		        </div>
+		    </div>
+		</div>
+	    <script src="js/vendor/jquery.min.js"></script>
+	    <script src="js/vendor/jquery.mask.min.js"></script>
+	    <script src="js/main.js"></script>
+	</body>
+</html>

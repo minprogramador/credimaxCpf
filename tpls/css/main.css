@@ -1,0 +1,146 @@
+body { line-height: 1.1 }
+#index { background: url('../img/bg-top.jpg') center -100px repeat-x; }
+#result { background-color: #fafafa }
+
+/* SCROLLBAR */
+::-webkit-scrollbar-track {
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: #F5F5F5;
+}
+::-webkit-scrollbar {
+	width: 7px;
+	height: 7px;
+	background-color: #F5F5F5;
+}
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #286090;
+}
+
+/* GENERAL */
+.btn { margin: 25px auto }
+#consultaIden { margin: 0 auto }
+h3 .glyphicon { font-size: 18px; margin-right: 10px; }
+.none { display: none; }
+.btn:focus { outline: none }
+.rowTable, table table tr:first-of-type, table table tr:first-of-type:hover { background-color: #acdcec!important }
+.navbar-header { float: none; }
+.table-responsive { border: 0 }
+.no-hover { background-color: inherit!important; }
+.click { cursor: pointer; }
+.padding { padding: 25px 8px!important; }
+.font25 { padding: 25px!important; font-size: 25px!important; background-color: #FFE4B5 }
+
+#reconsultar { margin-top: -30px; }
+
+.table-responsive:nth-child(1) { margin-top: 25px }
+	table tr:first-of-type { color: #fff; }
+	table tr:first-of-type, table tr:first-of-type:hover { background-color: #255d94!important }
+	table table tr:first-of-type { color: inherit; }
+	td .glyphicon { font-weight: bold; }
+
+@page { margin: auto 0; }
+
+/* hide input */
+input.radio:empty {
+	display: none;
+}
+
+/* style label */
+input.radio:empty ~ label {
+	position: relative;
+	float: left;
+	line-height: 1.5em;
+	text-indent: 2.25em;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	color: #777;
+	margin-right: 15px;
+	margin-top: -3px;
+}
+
+input.radio:empty ~ label:before {
+	position: absolute;
+	display: block;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	content: '';
+	width: 1.5em;
+	background: #D1D3D4;
+	border-radius: 100%;
+	text-align: center;
+}
+
+_:-moz-tree-row(hover), input.radio:empty ~ label:before {
+	line-height: 1.3em;
+}
+
+/* toggle hover */
+input.radio:hover:not(:checked) ~ label:before {
+	content:'\2714';
+	text-indent: 0;
+	color: #204d74;
+}
+
+_:-moz-tree-row(hover), input.radio:hover:not(:checked) ~ label:before {
+	text-indent: 0;
+}
+
+input.radio:hover:not(:checked) ~ label {
+	color: #888;
+}
+
+/* toggle on */
+input.radio:checked ~ label:before {
+	content:'\2714';
+	text-indent: 0;
+	color: #eee;
+	background-color: #286090;
+}
+
+_:-moz-tree-row(hover), input.radio:checked ~ label:before {
+	text-indent: 0;
+}
+
+input.radio:checked ~ label {
+	color: inherit;
+}
+
+/* radio focus */
+input.radio:focus ~ label:before {
+	box-shadow: 0 0 0 3px #999;
+}
+
+/* RESULT */
+.feedback-result, .bg-info, .bg-success { padding: 15px; }
+
+/* LOADER */
+#loader, #loader .bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 99;
+}
+#loader .bg {
+	background-color: #ddd;
+	opacity: .6;
+	filter: alpha(opacity=60);
+}
+.loading {
+	background-image: url('../img/loading.svg');
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 60px;
+	height: 60px;
+	margin: -30px 0 0 -30px;
+	z-index: 100;
+}
