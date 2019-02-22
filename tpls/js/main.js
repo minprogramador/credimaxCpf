@@ -1,6 +1,6 @@
 var app = {};
 app.count = 0;
-
+app.lock = false;
 app.initBusca = function initBusca() {
 	app.mask();
 	app.searchXML();
@@ -29,7 +29,7 @@ app.pesquisar = function(doc, score, callback) {
 
 	$.ajax({
 		method : "POST",
-	    url : './CredimaxCpftemp',
+	    url : './credimaxCpf.php',
 	    data: { dados: doc, score:score },
 	    dataType: 'json',
 	    timeout: 15000
@@ -53,8 +53,7 @@ app.pesquisar = function(doc, score, callback) {
 		}
 	})
 	.fail(function() {
-		alert('fail.');
-		//callback({msg:'reload'});
+		callback({msg:'reload'});
 	});
 
 };
@@ -80,14 +79,15 @@ app.consultar = function() {
 		doc = doc.replace(".", "");
 		doc = doc.replace(".", "");
 		doc = doc.replace("-", "");
+		doc = doc.replace("	", "");
 		doc = doc.replace(" ", "");
 		doc = doc.replace("	", "");
-		doc = doc.replace("  ", "");
-		doc = doc.replace(" ", "");
 		doc = doc.replace("\t", "");
 		doc = doc.replace("\n", "");
 		doc = Number(doc);
-
+		
+		app.lock = true;
+		
 		app.pesquisar(doc, score, function(res) {
 
 			if(res.msg) {
@@ -99,6 +99,7 @@ app.consultar = function() {
 						$("#alertprocessando").hide();
 						$("#consultaIden").show();
 						$('#consultaIden').attr('disabled', false);
+						app.lock = false;
 						app.count =0;
 						return;
 					}else {
@@ -106,11 +107,13 @@ app.consultar = function() {
 							$("#alertindisponivel").hide();
 							app.consultar();
 							$("#alertprocessando").show();
+							app.lock = true;
 						}, 2000);
 
 						return false;
 					}
 				}else{
+					app.lock = false;
 					$("#alertprocessando").hide();
 				}
 
@@ -122,6 +125,7 @@ app.consultar = function() {
 				}
 
 				if(res.msg === 'invalido') {
+					$('#consultaIden').attr('disabled', false);
 					$("#alertcpfinvalido").show();
 				}else{
 					$("#alertcpfinvalido").hide();
@@ -135,8 +139,15 @@ app.consultar = function() {
 
 				$("#consultaIden").show();
 				$("#bxloading").hide();
+				app.lock = false;
 			}else if(res.dados) {
-
+				app.lock = false;
+				$("#alertcpfinvalido").hide();
+				$("#alertnadaencontrado").hide();
+				$("#alertindisponivel").hide();
+				$("#alertprocessando").hide();
+				$("#consultaIden").hide();
+				$("#bxloading").hide();
 				$("#mainok").hide();
 				$("#resultok").html(res.dados).show();
 
@@ -149,14 +160,17 @@ app.consultar = function() {
 					$("#alertprocessando").hide();
 					$("#consultaIden").show();
 					$('#consultaIden').attr('disabled', false);
-					app.count =0;
+					app.lock = false;
+					app.count=0;
 					return;
 				}else {
+
 					setTimeout( function() {
+						app.lock = true;
 						$("#alertindisponivel").hide();
 						app.consultar();
 						$("#alertprocessando").show();
-					}, 2000);
+					}, 1500);
 
 					return false;
 				}
@@ -173,8 +187,10 @@ $.fn.onEnterKey = function(closure) {
         var code = event.keyCode ? event.keyCode : event.which;
 
         if (code == 13) {
-            closure();
-            return false;
+        	if(app.lock !== true) {
+	            closure();
+	            return false;
+        	}
         }
     });
 };
@@ -190,9 +206,17 @@ app.searchXML = function() {
 		app.consultar();
 		return false;
 	});
-
-
 };
+function printer() {
+	window.print();
+}
 
-app.initBusca();
+function newcon() {
+	app.initBusca();
+}
+$( document ).ready(function() {
+	newcon();
+	$("#index").css("background", "url('tpls/img/bg-top.jpg') center -100px repeat-x");
+});
+
 
